@@ -1,76 +1,61 @@
 # 🌱 AgriSense – Farm Management System
 
-**AgriSense** is a Django-based farm management web application designed to help farmers manage crops, track agricultural expenses, record sales, and monitor profits or losses through a simple and user-friendly dashboard.
-
-The project aims to reduce manual record-keeping and help farmers make better decisions using organized agricultural and financial information.
-
 ## 📌 Project Overview
 
-Farmers often maintain crop details, investments, expenses, and sales using notebooks or spreadsheets. This makes it difficult to calculate profits and compare crop performance.
+AgriSense is a Django-based Farm Management Web Application designed to help farmers manage their agricultural activities and monitor financial performance through a centralized dashboard.
 
-AgriSense provides a centralized digital platform where farmers can manage their farming activities and monitor financial performance efficiently.
+The application allows farmers to manage crop details, track agricultural expenses, record crop sales, and calculate overall profit or loss.
 
-## 🎯 Objectives
+AgriSense aims to reduce manual record-keeping and help farmers make better decisions using organized digital records.
 
-- Digitize agricultural record management.
-- Simplify crop and expense tracking.
-- Maintain crop-wise sales information.
-- Calculate total investment and revenue.
-- Monitor crop-wise and overall profitability.
-- Help farmers make informed decisions.
+## 🎯 Problem Statement
 
-## ✨ Features
+Farmers often maintain crop details, investments, expenses, and sales using notebooks or spreadsheets. This makes it difficult to calculate actual profits, monitor crop performance, and manage multiple farming activities.
+
+AgriSense provides a simple digital solution to organize farming operations and improve financial visibility.
+
+## ✨ Key Features
 
 ### 1. Farmer Registration and Authentication
-- User registration and login.
+- Farmer registration and login.
 - Secure authentication using Django.
 - Individual farmer profiles.
-- Farmer contact and land information.
+- User-specific data access.
 
 ### 2. Crop Management
-- Add, edit, view, and delete crop records.
-- Maintain crop names and varieties.
-- Track land area in acres.
-- Manage farming seasons and start dates.
-- Record harvest quantity and crop status.
+- Add, update, view, and delete crop details.
+- Manage crop names and varieties.
+- Record cultivated land in acres.
+- Track farming seasons and start dates.
+- Maintain harvest quantity and crop status.
 
 ### 3. Expense Tracking
-- Record expenses for individual crops.
-- Categorize agricultural expenses:
-  - Seeds
-  - Fertilizers
-  - Pesticides
-  - Labour
-  - Irrigation
-  - Tractor and ploughing
-  - Equipment rental
-  - Transportation
-  - Harvesting
-  - Other expenses
-- Calculate total crop investment.
+- Record crop-related expenses.
+- Categorize expenses such as seeds, fertilizers, pesticides, labour, irrigation, and transportation.
+- Track individual crop investments.
+- Calculate total expenses.
 
 ### 4. Sales Management
 - Record crop sales.
-- Maintain sale dates and quantities.
-- Store unit prices.
-- Calculate sales revenue.
-- Validate sales quantities against harvested output.
+- Store sale dates, quantities, and unit prices.
+- Calculate total sales revenue.
+- Validate sales to prevent selling more than the harvested quantity.
 
-### 5. Dashboard and Profit Calculation
-- Display total active crops.
+### 5. Dashboard and Profit Analysis
+- View total active crops.
 - Monitor total cultivated land.
-- View total investment.
-- Track total sales revenue.
+- Track total investment.
+- View total sales revenue.
 - Calculate overall profit or loss.
-- View crop-wise financial performance.
+- Monitor crop-wise financial performance.
 
 ## 🛠️ Technology Stack
 
 | Technology | Purpose |
 |---|---|
 | Python | Backend programming |
-| Django | Web framework |
-| SQLite | Database |
+| Django | Web application framework |
+| MySQL | Relational database |
 | Django ORM | Database operations |
 | HTML5 | Web page structure |
 | CSS3 | Styling |
@@ -79,43 +64,21 @@ AgriSense provides a centralized digital platform where farmers can manage their
 
 ## 🏗️ Project Architecture
 
-```text
-AgriSense/
-│
-├── AgriSense/
-│   ├── settings.py
-│   ├── urls.py
-│   └── wsgi.py
-│
-├── accounts/
-│   ├── migrations/
-│   ├── templates/
-│   ├── models.py
-│   ├── views.py
-│   └── urls.py
-│
-├── farm/
-│   ├── migrations/
-│   ├── models.py
-│   ├── views.py
-│   └── urls.py
-│
-├── templates/
-│
-├── static/
-│
-├── manage.py
-├── requirements.txt
-└── README.md
-```
+The application is organized into the following modules:
 
-*Note: This is a representative structure. Actual files may vary depending on the project implementation.*
+- **AgriSense:** Main Django project configuration and URL routing.
+- **Accounts App:** User registration, login, logout, and farmer profile management.
+- **Farm App:** Crop management, expense tracking, sales management, and dashboard functionality.
+- **Templates:** HTML pages for the user interface.
+- **Static Files:** CSS, JavaScript, and other frontend assets.
 
-## 🗄️ Database Models
+## 🗄️ Database Design
 
-The application uses relational database models.
+The application uses MySQL with Django ORM.
 
-**FarmerProfile**
+### Main Database Models
+
+**1. FarmerProfile**
 - User
 - Mobile
 - Village
@@ -123,7 +86,7 @@ The application uses relational database models.
 - State
 - Total land acres
 
-**Crop**
+**2. Crop**
 - Farmer
 - Crop name
 - Variety
@@ -131,10 +94,11 @@ The application uses relational database models.
 - Season
 - Start date
 - Harvested quantity
+- Actual harvest date
 - Status
 - Notes
 
-**CropExpense**
+**3. CropExpense**
 - Crop
 - Expense date
 - Category
@@ -142,7 +106,7 @@ The application uses relational database models.
 - Description
 - Quantity
 
-**CropSale**
+**4. CropSale**
 - Crop
 - Sale date
 - Quantity sold
@@ -150,31 +114,31 @@ The application uses relational database models.
 
 ## 💰 Business Logic
 
-AgriSense uses simple financial calculations to monitor agricultural profitability.
+AgriSense calculates crop profitability using the following formulas:
 
 **Total Investment**
 
-```python
 Total Investment = Sum of All Crop Expenses
-```
 
 **Total Sales Revenue**
 
-```python
-Revenue = Quantity Sold * Unit Price
-```
+Revenue = Quantity Sold × Unit Price
 
-**Net Profit or Loss**
+**Net Profit / Loss**
 
-```python
-Net Profit = Total Sales Revenue - Total Investment
-```
+Net Profit = Total Sales Revenue − Total Investment
 
-The application also validates sales to prevent the quantity sold from exceeding the harvested quantity.
+These calculations help farmers understand the financial performance of individual crops and their overall farming operations.
 
 ## ⚙️ Installation and Setup
 
-Follow these steps to run the project locally.
+### Prerequisites
+
+- Python installed
+- MySQL Server
+- MySQL Workbench (optional)
+- Git
+- Visual Studio Code or PyCharm
 
 ### Step 1: Clone the Repository
 
@@ -182,7 +146,7 @@ Follow these steps to run the project locally.
 git clone https://github.com/Akhil-2233/AgriSense.git
 ```
 
-### Step 2: Navigate to the Project Folder
+### Step 2: Navigate to the Project Directory
 
 ```bash
 cd AgriSense
@@ -194,81 +158,77 @@ cd AgriSense
 python -m venv venv
 ```
 
-### Step 4: Activate the Virtual Environment
-
-For Windows:
+Activate the environment on Windows:
 
 ```bash
 venv\Scripts\activate
 ```
 
-### Step 5: Install Dependencies
+### Step 4: Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
+### Step 5: Configure MySQL Database
+
+Create a MySQL database:
+
+```sql
+CREATE DATABASE agrisense;
+```
+
+Configure your MySQL database credentials in Django's `settings.py`.
+
+Update the database engine to:
+
+```python
+'ENGINE': 'django.db.backends.mysql'
+```
+
+Configure the database name, username, password, host, and port according to your MySQL setup.
+
 ### Step 6: Apply Database Migrations
 
 ```bash
+python manage.py makemigrations
 python manage.py migrate
 ```
 
-### Step 7: Create an Admin Account (Optional)
-
-```bash
-python manage.py createsuperuser
-```
-
-### Step 8: Run the Development Server
+### Step 7: Run the Development Server
 
 ```bash
 python manage.py runserver
 ```
 
-Open your browser and visit:
+### Step 8: Open the Application
+
+Visit:
 
 ```text
 http://127.0.0.1:8000/
 ```
 
-## 🔐 Security and Access Control
-
-- Django authentication for user login and logout.
-- Login-required restrictions for protected pages.
-- User-specific data filtering.
-- Validation of crop sales against harvested quantities.
-
 ## 🚀 Future Enhancements
 
 - Weather forecasting integration.
-- Crop yield prediction using machine learning.
+- Crop yield prediction.
 - Irrigation management.
-- Multi-farm management.
 - PDF report generation.
 - Interactive charts and analytics.
-- Export and import of farm records.
+- Multi-farm management.
+- Mobile-friendly improvements.
 
-## 💡 Project Impact
+## 🎓 Project Purpose
 
-AgriSense helps farmers:
-- Reduce manual paperwork.
-- Track agricultural investments.
-- Understand crop profitability.
-- Identify high-expense activities.
-- Compare crop performance.
-- Improve farming decisions.
+AgriSense was developed as a practical web development project to demonstrate full-stack development using Python and Django, relational database management using MySQL, CRUD operations, authentication, and business logic implementation.
 
 ## 👨‍💻 Developer
 
 **Akhil**
 
-GitHub: [Akhil-2233](https://github.com/Akhil-2233)
-
-Project Repository: [AgriSense](https://github.com/Akhil-2233/AgriSense)
+GitHub: https://github.com/Akhil-2233
 
 ---
 
-⭐ If you find this project useful, consider giving the repository a star!
-
-**AgriSense – Smart Farming, Better Decisions.** 🌱
+⭐ If you find this project useful, feel free to explore the repository!
